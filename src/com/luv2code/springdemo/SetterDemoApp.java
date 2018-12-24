@@ -10,9 +10,9 @@ public class SetterDemoApp {
 				new ClassPathXmlApplicationContext("applicationContext.xml"); 
 		
 		//retreive bean from sprig container
-	    // here myCricketCoach is the bean id of bean we want to retreive
+	        // here myCricketCoach is the bean id of bean we want to retreive
 		//CricketCoach theCoach =new CricketCoach();
-	    CricketCoach theCoach = context.getBean("myCricketCoach",CricketCoach.class);  
+	        CricketCoach theCoach = context.getBean("myCricketCoach",CricketCoach.class);  
 				
 		//call methods on the beans
 		System.out.println(theCoach.getDailyWorkout());
