@@ -6,12 +6,13 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder location="classpath:final.properties"/>
     
     <!--configure the dependency injection-->
     
     
     <!-- define the dependency here -->
-	<bean id="myFortune"
+	<bean id="myFortuneService"
 	class="com.luv2code.springdemo.HappyFortuneService">
 	</bean>
 	
@@ -24,13 +25,23 @@
 	<bean id="myCoach"
 	class="com.luv2code.springdemo.TrackCoach">
   	<!-- set up your constructor injection  -->
-  	<constructor-arg ref="myFortune"/>
+  	<constructor-arg ref="myFortuneService"/>
+	</bean>
+
+
+	<!-- behind the scenes after above injection,spring will perform the following -->
+	<!-- TrackCoach myCoach=new TrackCoach(myFortuneService) -->
+
+	<bean id="myCricketCoach" 
+	class="com.luv2code.springdemo.CricketCoach">
+	<!-- set up setter injection -->
+	<property name="fortuneService" ref="myFortuneService"/>
+	
+	<!-- inject values -->
+	<!-- the emailAdress and team will call their respective setter methods in CricketCoach class -->
+	<property name="emailAddress" value ="${email}"/>
+	<property name="team" value="${team}"/>
+	
 	</bean>
 </beans>
-
-<!-- behind the scenes after above injection,spring will perform the following -->
-<!-- TrackCoach myCoach=new TrackCoach(myFortuneService) -->
-
-
-
 
